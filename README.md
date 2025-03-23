@@ -55,3 +55,79 @@ print("Output:", y)
 print("Gradients (x):", x.grad)
 print("Gradients (weight):", weight.grad)
 ```
+
+## Performance Analysis
+
+Triton:     Our Implementation
+
+Compiled:   PyTorch JIT compiled Implementation
+
+Original:   Native PyTorch Implementation
+
+```
+ -*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-
+
+Input dimension = 16 * 2048 * 1024
+
+Benchmarking forward pass
+
+Triton   RMSNorm average forward time:   0.000293 sec
+Compiled RMSNorm average forward time:   0.000286 sec
+Original RMSNorm average forward time:   0.000624 sec
+
+Benchmarking backward pass
+
+Triton   RMSNorm average backward time:   0.002273 sec
+Compiled RMSNorm average backward time:   0.005033 sec
+Original RMSNorm average backward time:   0.003069 sec
+
+ -*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-
+
+Input dimension = 16 * 2048 * 2048
+
+Benchmarking forward pass
+
+Triton   RMSNorm average forward time:   0.000437 sec
+Compiled RMSNorm average forward time:   0.000434 sec
+Original RMSNorm average forward time:   0.001200 sec
+
+Benchmarking backward pass
+
+Triton   RMSNorm average backward time:   0.005482 sec
+Compiled RMSNorm average backward time:   0.007459 sec
+Original RMSNorm average backward time:   0.005502 sec
+
+ -*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-
+
+Input dimension = 16 * 2048 * 4096
+
+Benchmarking forward pass
+
+Triton   RMSNorm average forward time:   0.000752 sec
+Compiled RMSNorm average forward time:   0.000749 sec
+Original RMSNorm average forward time:   0.002374 sec
+
+Benchmarking backward pass
+
+Triton   RMSNorm average backward time:   0.007732 sec
+Compiled RMSNorm average backward time:   0.008574 sec
+Original RMSNorm average backward time:   0.010889 sec
+
+ -*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-
+
+Input dimension = 16 * 2048 * 8192
+
+Benchmarking forward pass
+
+Triton   RMSNorm average forward time:   0.001386 sec
+Compiled RMSNorm average forward time:   0.001766 sec
+Original RMSNorm average forward time:   0.004651 sec
+
+Benchmarking backward pass
+
+Triton   RMSNorm average backward time:   0.013456 sec
+Compiled RMSNorm average backward time:   0.024180 sec
+Original RMSNorm average backward time:   0.021475 sec
+
+Benchmark complete.
+```
