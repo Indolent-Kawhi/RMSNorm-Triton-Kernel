@@ -125,7 +125,7 @@ def RMSNorm_Triton_bwd(
     xgdy_sum = tl.sum(xgdy) / H
 
     # Compute the gradient with respect to the input tensor.
-    grad_x = grad_y * weight * rms - x * xgdy_sum * rms * rms * rms
+    grad_x = grad_y * weight * rms - x * xgdy_sum * tl.math.fast_powf(rms, 3)
     # Store the computed gradient for input.
     tl.store(grad_x_ptrs, grad_x, mask=mask)
 
